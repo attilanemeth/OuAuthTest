@@ -39,6 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/loginFragment_username"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintVertical_bias="0"
+        app:passwordToggleEnabled="true"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:layout_marginTop="25dp"
@@ -62,6 +63,8 @@
         android:layout_marginStart="28dp"
         android:layout_marginTop="20dp"
         android:layout_marginEnd="28dp"
+        android:enabled="false"
+        android:background="@drawable/button_selector"
         android:layout_marginBottom="30dp"
         android:text='@string/login'
         app:layout_constraintBottom_toBottomOf="parent"
