@@ -3,6 +3,7 @@ package com.example.oauthtest.ui.main
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.oauthtest.models.LoginUiModel
+import com.example.oauthtest.models.Navigation
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -14,6 +15,7 @@ class LoginViewModel : ViewModel() {
 
     val username = MutableStateFlow<String?>(null)
     val password = MutableStateFlow<String?>(null)
+    val navigation = MutableSharedFlow<Navigation>()
     val loadingScreen: Flow<Boolean> get() = _loadingScreen
 
     val content = combine(username, password) { user, pw ->
@@ -23,7 +25,8 @@ class LoginViewModel : ViewModel() {
 
     fun loginClick() {
         viewModelScope.launch {
-            _loadingScreen.emit(t
+            _loadingScreen.emit(true)
+            navigation.emit(Navigation.UserFragment)
         }
     }
 
