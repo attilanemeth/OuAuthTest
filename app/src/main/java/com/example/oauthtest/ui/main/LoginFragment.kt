@@ -1,14 +1,15 @@
 package com.example.oauthtest.ui.main
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.expensestracker.BaseFragment
 import com.example.oauthtest.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class LoginFragment : Fragment() {
+class LoginFragment : BaseFragment() {
 
     companion object {
         fun newInstance() = LoginFragment()

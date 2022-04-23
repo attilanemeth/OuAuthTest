@@ -1,7 +1,7 @@
 package com.example.oauthtest
 
 import android.app.Application
-import di.appModule
+import com.example.oauthtest.di.appModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
