@@ -1,6 +1,5 @@
 package com.example.oauthtest.ui.main
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,13 +8,13 @@ import android.view.ViewGroup
 import com.example.oauthtest.R
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class MainFragment : Fragment() {
+class LoginFragment : Fragment() {
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance() = LoginFragment()
     }
 
-    private val viewModel: MainViewModel by viewModel()
+    private val viewModel: LoginViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,5 +27,4 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.test()
     }
-
 }
