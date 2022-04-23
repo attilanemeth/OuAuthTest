@@ -1,76 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.main.LoginFragment">
+<layout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/loginFragment_username"
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:hint="@string/username">
+        android:layout_height="match_parent"
+        tools:context=".ui.main.LoginFragment">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/loginFragment_username"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:imeOptions="actionNext"
-            android:inputType="text"
-            android:maxLength="30"
-            android:singleLine="true"
-            android:textAlignment="viewStart" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:hint="@string/username"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:imeOptions="actionNext"
+                android:inputType="text"
+                android:maxLength="30"
+                android:singleLine="true"
+                android:textAlignment="viewStart" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/loginFragment_Password"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginFragment_username"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias="0"
-        app:passwordToggleEnabled="true"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="25dp"
-        android:hint="@string/password">
-
-        <com.google.android.material.textfield.TextInputEditText
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/loginFragment_Password"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:imeOptions="actionNext"
-            android:inputType="textPassword"
-            android:maxLength="30"
-            android:singleLine="true"
-            android:textAlignment="viewStart" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginEnd="20dp"
+            android:hint="@string/password"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loginFragment_username"
+            app:layout_constraintVertical_bias="0"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:imeOptions="actionNext"
+                android:inputType="textPassword"
+                android:maxLength="30"
+                android:singleLine="true"
+                android:textAlignment="viewStart" />
+        </com.google.android.material.textfield.TextInputLayout>
 
 
-    <Button
-        android:id="@+id/loginFragment_LoginButton"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="28dp"
-        android:enabled="false"
-        android:background="@drawable/button_selector"
-        android:layout_marginBottom="30dp"
-        android:text='@string/login'
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="1"
-        tools:text="Login" />
+        <Button
+            android:id="@+id/loginFragment_LoginButton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/button_selector"
+            android:enabled="false"
+            android:text='@string/login'
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="1"
+            tools:text="Login" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
