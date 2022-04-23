@@ -5,5 +5,5 @@ import androidx.lifecycle.ViewModel
 class LoginViewModel : ViewModel() {
     // TODO: Implement the ViewModel
 
-    fun test() = ""
+    fun test() = "Hello"
 }
