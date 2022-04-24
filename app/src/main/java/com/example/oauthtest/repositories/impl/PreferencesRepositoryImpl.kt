@@ -39,4 +39,18 @@ class PreferencesRepositoryImpl(private val context: Context,):PreferencesReposi
             putLong(key, obj)
         }.apply()
     }
+
+    override fun getString(key: String, defVal: String?): String? = sharedPrefs.getString(key, defVal)
+
+    override fun getBoolean(key: String, defVal: Boolean): Boolean = sharedPrefs.getBoolean(key, defVal)
+
+    override fun getFloat(key: String, defVal: Float): Float = sharedPrefs.getFloat(key, defVal)
+
+    override fun getInt(key: String, defVal: Int): Int = sharedPrefs.getInt(key, defVal)
+
+    override fun getLong(key: String, defVal: Long): Long = sharedPrefs.getLong(key, defVal)
+
+    override fun clear() {
+        sharedPrefs.edit().clear().apply()
+    }
 }

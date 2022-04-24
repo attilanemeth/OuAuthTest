@@ -2,6 +2,7 @@ package com.example.oauthtest
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.oauthtest.ui.main.AppInitFragment
 import com.example.oauthtest.ui.main.LoginFragment
 
 class MainActivity : AppCompatActivity() {
@@ -11,7 +12,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.container, LoginFragment.newInstance())
+                .replace(R.id.container, AppInitFragment.newInstance())
                 .commitNow()
         }
     }

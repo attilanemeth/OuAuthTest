@@ -3,6 +3,7 @@ package com.example.oauthtest.networking
 import android.app.Application
 import android.content.Context
 import co.infinum.retromock.Retromock
+import com.example.oauthtest.ResourceBodyFactory
 import com.example.oauthtest.networking.interceptors.BasicHeaderInterceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -20,17 +21,28 @@ object RetrofitBuilder {
             .build()
     }
 
-    inline fun <reified T>  makeRetrofit(context: Context, okHttpClient: OkHttpClient): T {
+    inline fun makeRetrofit(context: Context, okHttpClient: OkHttpClient): Retrofit {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://test.com/")
+            .baseUrl("https://test.com/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
 
-        return retrofit.create();
+        return retrofit;
+    }
+
+    fun buildApiService(retrofit: Retrofit): EndPoints {
+        return retrofit.create(EndPoints::class.java)
+    }
+
+    fun buildApiServiceWithMock(retroMock: Retromock): EndPoints {
+        return retroMock.create(EndPoints::class.java)
     }
 
     fun makeRetroMock(retrofit: Retrofit):Retromock{
-        return Retromock.Builder().retrofit(retrofit).build()
+        return Retromock.Builder()
+            .defaultBodyFactory(ResourceBodyFactory())
+            .retrofit(retrofit)
+            .build()
     }
 }
