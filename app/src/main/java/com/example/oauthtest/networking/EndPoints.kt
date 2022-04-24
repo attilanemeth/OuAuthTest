@@ -12,16 +12,17 @@ import retrofit2.http.POST
 
 interface EndPoints {
     @Mock
-    //@MockBehavior(durationMillis = 15000)
-   // @MockResponse(code = 401,   body = "ok.json")
+    //@MockResponse(code = 401,   body = "err.json")
+    @MockBehavior(durationMillis = 3500)
     @MockResponse(body = "ok.json")
     @POST("api/v1/token")
     suspend fun getToken(@Body request:AuthRequest) : Response<AuthResponse>
 
 
     @Mock
-    @POST("api/v1/token")
     //@MockResponse(code = 401,   body = "ok.json")
+    @MockBehavior(durationMillis = 4000)
     @MockResponse(body = "ok.json")
+    @POST("api/v1/token")
     suspend fun refreshToken(@Body request:RefreshTokenRequest) : Response<AuthResponse>
 }

@@ -1,6 +1,12 @@
 package com.example.oauthtest.networking
 
+import android.content.Context
+import android.net.ConnectivityManager
+import androidx.core.content.ContextCompat.getSystemService
+import okio.IOException
+import retrofit2.HttpException
 import retrofit2.Response
+
 
 class Api(
     val endPoints: EndPoints
@@ -10,7 +16,13 @@ class Api(
         val response: Response<T>
         try {
             response = call.invoke()
-        } catch (t: Throwable) {
+        }
+        catch (e: HttpException) {
+            return Result.Error(NetworkException)
+        } catch (e: IOException) {
+            return Result.Error(NetworkException)
+        }
+        catch (t: Throwable) {
             return Result.Error(Exception())
         }
         return if (!response.isSuccessful) {
@@ -26,6 +38,7 @@ class Api(
     }
 
     data class ApiException(val code: Int) : Exception()
+    object  NetworkException : Exception()
 
     sealed class Result<out T : Any> {
         data class Success<out T : Any>(val data: T) : Result<T>()

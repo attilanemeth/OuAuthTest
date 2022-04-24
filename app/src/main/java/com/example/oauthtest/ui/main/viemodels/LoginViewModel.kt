@@ -51,6 +51,10 @@ class LoginViewModel(
                         else -> _error.emit("Unexpected Error")
                     }
                 }
+                is State.NetworkError -> {
+                    _error.emit(state.message)
+                    _loadingScreen.emit(false)
+                }
             }
         }.launchIn(viewModelScope)
     }

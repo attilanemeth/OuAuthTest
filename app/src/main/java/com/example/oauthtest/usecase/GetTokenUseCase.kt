@@ -19,6 +19,7 @@ class GetTokenUseCase(
             is Api.Result.Error -> {
                 when(val exception = response.exception){
                     is Api.ApiException -> emit(State.ApiError(exception.code))
+                    is Api.NetworkException -> emit(State.NetworkError("Check your internet connection"))
                     else -> emit(State.Error(response.exception.message ?: ""))
                 }
             }
@@ -46,4 +47,5 @@ sealed class State {
     object Success : State()
     data class Error(val errorMsg: String) : State()
     data class ApiError(val errorCode: Int) : State()
+    data class NetworkError(val message: String) : State()
 }
