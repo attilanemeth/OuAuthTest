@@ -1,17 +1,19 @@
-package com.example.oauthtest.ui.main
+package com.example.oauthtest
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
 import androidx.lifecycle.asLiveData
+import androidx.test.InstrumentationRegistry.getContext
+import androidx.test.platform.app.InstrumentationRegistry
 import app.cash.turbine.test
 import com.example.oauthtest.di.appModule
 import com.example.oauthtest.models.LoginUiModel
-import com.example.oauthtest.models.Navigation
+import com.example.oauthtest.ui.main.LoginFragment
+import com.example.oauthtest.ui.main.viemodels.LoginViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runBlockingTest
@@ -22,6 +24,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import org.koin.core.context.stopKoin
 import org.koin.test.KoinTest

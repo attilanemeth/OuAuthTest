@@ -3,8 +3,8 @@ package com.example.oauthtest.usecase
 import com.example.oauthtest.networking.Api
 import com.example.oauthtest.networking.requests.getToken
 import com.example.oauthtest.repositories.PreferencesRepository
-import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flow
+import java.util.*
 
 class GetTokenUseCase(
     private val api: Api,
@@ -12,7 +12,9 @@ class GetTokenUseCase(
 ) {
     operator fun invoke(username: String, password: String) = flow {
         emit(State.Started)
-        val response = api.getToken(username, password)
+        val clintId = preferencesRepository.getString("clientId") ?: generateClientID()
+
+        val response = api.getToken(username, password, clintId)
         when (response) {
             is Api.Result.Error -> {
                 when(val exception = response.exception){
@@ -30,6 +32,12 @@ class GetTokenUseCase(
                 emit(State.Success)
             }
         }
+    }
+
+    private suspend fun generateClientID() :String{
+        val uuid = UUID.randomUUID().toString()
+        preferencesRepository.putString("clientId",uuid)
+        return uuid
     }
 }
 

@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.expensestracker.BaseFragment
 import com.example.oauthtest.R
+import com.example.oauthtest.databinding.FragmentUserBinding
+import com.example.oauthtest.ui.main.viemodels.UserViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class UserFragment : BaseFragment() {
@@ -19,8 +21,11 @@ class UserFragment : BaseFragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_user, container, false)
+    ): View {
+       return FragmentUserBinding.inflate(inflater).apply {
+           this.lifecycleOwner = this@UserFragment.viewLifecycleOwner
+           this.viewModel = this@UserFragment.viewModel
+       }.root
     }
 
 }

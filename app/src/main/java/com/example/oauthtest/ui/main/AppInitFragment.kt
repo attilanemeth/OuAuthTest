@@ -1,14 +1,15 @@
 package com.example.oauthtest.ui.main
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.oauthtest.R
+import com.example.oauthtest.databinding.FragmentAppInitBinding
 import com.example.oauthtest.models.Navigation
+import com.example.oauthtest.ui.main.viemodels.AppInitViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -26,14 +27,13 @@ class AppInitFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_app_init, container, false)
-    }
+    ) = FragmentAppInitBinding.inflate(inflater).root
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         jobs += viewModel.navigation.onEach {
-            when(it){
+            when (it) {
                 Navigation.LoginFragment -> {
                     val fragment = LoginFragment.newInstance()
                     val transition = parentFragmentManager.beginTransaction()
@@ -51,4 +51,10 @@ class AppInitFragment : Fragment() {
         viewModel.init()
     }
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        jobs.forEach {
+            it.cancel()
+        }
+    }
 }

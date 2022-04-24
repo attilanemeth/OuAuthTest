@@ -54,4 +54,13 @@ open class BaseFragment : Fragment() {
         super.onDetach()
         Log.d(TAG, javaClass.simpleName + " - onDetach")
     }
+
+    open fun onBackPressed() {
+        try {
+            parentFragmentManager.popBackStack()
+        } catch (e: IllegalStateException) {
+            Log.d("Fragment", e.message!!)
+        }
+    }
+
 }

@@ -1,12 +1,15 @@
 package com.example.oauthtest.di
 
 import com.example.oauthtest.networking.Api
-import com.example.oauthtest.networking.EndPoints
 import com.example.oauthtest.networking.RetrofitBuilder
 import com.example.oauthtest.repositories.PreferencesRepository
 import com.example.oauthtest.repositories.impl.PreferencesRepositoryImpl
 import com.example.oauthtest.ui.main.*
+import com.example.oauthtest.ui.main.viemodels.AppInitViewModel
+import com.example.oauthtest.ui.main.viemodels.LoginViewModel
+import com.example.oauthtest.ui.main.viemodels.UserViewModel
 import com.example.oauthtest.usecase.GetTokenUseCase
+import com.example.oauthtest.usecase.RefreshTokenUseCase
 import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
@@ -21,9 +24,10 @@ val appModule = module {
     single { Api(get()) }
 
     factory { GetTokenUseCase(get(),get()) }
+    factory { RefreshTokenUseCase(get(),get()) }
     viewModel { LoginViewModel(get(),get()) }
-    viewModel { UserViewModel() }
-    viewModel { AppInitViewModel(get(),get(),get()) }
+    viewModel { UserViewModel(get()) }
+    viewModel { AppInitViewModel(get()) }
 }
 
 val repositoryModule = module {

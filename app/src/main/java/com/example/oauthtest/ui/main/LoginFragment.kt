@@ -13,12 +13,12 @@ import com.example.expensestracker.BaseFragment
 import com.example.oauthtest.R
 import com.example.oauthtest.databinding.FragmentMainBinding
 import com.example.oauthtest.models.Navigation
+import com.example.oauthtest.ui.main.viemodels.LoginViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
-import kotlin.math.log
 
 class LoginFragment : BaseFragment() {
 
@@ -44,8 +44,23 @@ class LoginFragment : BaseFragment() {
         }.root
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel.test()
+        jobs += viewModel.loadingScreen.onEach {
+            if (it) {
+                loadingScreenHelper.showLoadingScreen(requireContext())
+            } else {
+                loadingScreenHelper.dismissDialog()
+            }
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+
+        jobs += viewModel.error.onEach {
+            createGeneralErrorPopup(requireContext(),it ?: "Error").show()
+
+        }.launchIn(viewLifecycleOwner.lifecycleScope)
+
         jobs += viewModel.navigation.onEach {
             when(it){
                 Navigation.UserFragment -> {
@@ -65,23 +80,6 @@ class LoginFragment : BaseFragment() {
                 }
             }
         }.launchIn(lifecycleScope)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel.test()
-        jobs += viewModel.loadingScreen.onEach {
-            if (it) {
-                loadingScreenHelper.showLoadingScreen(requireContext())
-            } else {
-                loadingScreenHelper.dismissDialog()
-            }
-        }.launchIn(viewLifecycleOwner.lifecycleScope)
-
-        jobs += viewModel.error.onEach {
-            createGeneralErrorPopup(requireContext(),it ?: "Error").show()
-
-        }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
 

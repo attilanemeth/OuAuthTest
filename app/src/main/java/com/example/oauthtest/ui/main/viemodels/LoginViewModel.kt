@@ -1,4 +1,4 @@
-package com.example.oauthtest.ui.main
+package com.example.oauthtest.ui.main.viemodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -31,7 +31,7 @@ class LoginViewModel(
 
 
     fun loginClick() {
-        getTokenUseCase("User","fsfs").onEach { state ->
+        getTokenUseCase(username.value?:"", password.value?: "").onEach { state ->
             when(state){
                 is State.Error -> {
                     _loadingScreen.emit(false)
